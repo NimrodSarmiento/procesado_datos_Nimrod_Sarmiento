@@ -4,7 +4,7 @@
 
 ## Nos hace un listado de archivos
 ## Especificamos full.names=T para que nos de la ruta
-directorio <- "./datos/"
+directorio <- ".//tema1/datos/"
 archivo <- list.files(directorio, full.names = T)
 ## leemos las lineas del archivo
 predata <- readLines(archivo)
@@ -79,12 +79,17 @@ for (i in 1:nrow(combinaciones)) {
     combinaciones$p.value[i] <- test.object$p.value
     
 }
+combinaciones.adj <- p.adjust(combinaciones$p.value,"BH")
 
 
 ### Haced una tabla con la n de cada subgrupo formado
 ### y el p valor asociado y los valores esperados medios
 
 ### ¿Qué genero está mas asociado con la obesidad?
+
+datos.dt %>% group_by(Gender,SMOKE) %>% summarise(n=n())
+
+
 ### dicho genero, su familia esta asociada con obesidad?
 ### ¿Cuales comen calorico pero no tienen obesidad? ¿
 ### De los que fuman, y no tienen obesidad, tienen actividad fisica
@@ -100,5 +105,5 @@ for (i in 1:nrow(combinaciones)) {
 ###   que sucede cuando hay más de un nivel ?
 
 
-
+write.csv(datos,".//tema1/datos/")
 
