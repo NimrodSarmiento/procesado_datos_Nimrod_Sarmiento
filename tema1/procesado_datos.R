@@ -81,6 +81,8 @@ for (i in 1:nrow(combinaciones)) {
 }
 combinaciones.adj <- p.adjust(combinaciones$p.value,"BH")
 
+library(data.table)
+
 
 ### Haced una tabla con la n de cada subgrupo formado
 ### y el p valor asociado y los valores esperados medios
