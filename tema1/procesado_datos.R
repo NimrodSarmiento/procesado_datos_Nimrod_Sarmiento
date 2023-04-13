@@ -82,7 +82,13 @@ for (i in 1:nrow(combinaciones)) {
 combinaciones.adj <- p.adjust(combinaciones$p.value,"BH")
 
 library(data.table)
+library(dplyr)
+datos.dt<-as.data.table(datos) 
 
+obesidad <- datos$NObeyesdad
+genero <- datos$Gender
+
+tabla <- table(obesidad,genero)
 
 ### Haced una tabla con la n de cada subgrupo formado
 ### y el p valor asociado y los valores esperados medios
@@ -90,6 +96,7 @@ library(data.table)
 ### ¿Qué genero está mas asociado con la obesidad?
 
 datos.dt %>% group_by(Gender,SMOKE) %>% summarise(n=n())
+
 
 
 ### dicho genero, su familia esta asociada con obesidad?
@@ -106,6 +113,6 @@ datos.dt %>% group_by(Gender,SMOKE) %>% summarise(n=n())
 ### y las categoricas cuando hay solo dos niveles
 ###   que sucede cuando hay más de un nivel ?
 
+tablahis <- tab
 
-write.csv(datos,".//tema1/datos/")
 
